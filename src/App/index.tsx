@@ -6,13 +6,13 @@ import {
   useRef,
   useState,
 } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { ContactSection } from "./components/ContactSection";
-import { ContactFooter } from "./components/ContactFooter";
-import { HeroScene } from "./components/HeroScene";
-import { JobDetailPanel } from "./components/JobDetailPanel";
-import { SkillsSection } from "./components/SkillsSection";
-import { resumeData } from "./data/resumeData";
+import { useReducedMotion } from "framer-motion";
+import { IntroSection } from "../components/IntroSection";
+import { ContactSection } from "../components/ContactSection";
+import { HeroSection } from "../components/HeroSection";
+import { SkillsSection } from "../components/SkillsSection";
+import { resumeData } from "../data/resumeData";
+import "./style.css";
 
 export default function App() {
   const prefersReducedMotion = useReducedMotion();
@@ -72,7 +72,10 @@ export default function App() {
 
     if (window.matchMedia("(max-width: 960px)").matches) {
       requestAnimationFrame(() => {
-        panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        panelRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
       });
     }
   };
@@ -83,55 +86,23 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <section className="hero-layout">
-        <div className="hero-copy">
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.08 }}
-          >
-            {resumeData.profile.name}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.18 }}
-          >
-            {resumeData.profile.title}
-          </motion.p>
-        </div>
-
-        <HeroScene
-          jobs={resumeData.jobs}
-          selectedId={selectedId}
-          onSelect={handleSelect}
-          motionFactor={motionFactor}
-        />
-
-        <motion.button
-          ref={ctaRef}
-          className="hero-cta"
-          onClick={revealPanel}
-          whileHover={{ scale: 1.02, y: -1 }}
-          whileTap={{ scale: 0.99 }}
-          aria-expanded={Boolean(selectedJob)}
-        >
-          {resumeData.profile.cta}
-        </motion.button>
-
-        <JobDetailPanel
-          job={selectedJob}
-          panelRef={panelRef}
-          onClose={handleClose}
-        />
-      </section>
-
-      <SkillsSection profile={resumeData.profile} skills={resumeData.skills} />
+      <HeroSection
+        profile={resumeData.profile}
+        jobs={resumeData.jobs}
+        selectedId={selectedId}
+        selectedJob={selectedJob}
+        motionFactor={motionFactor}
+        onSelect={handleSelect}
+        onClose={handleClose}
+        onRevealPanel={revealPanel}
+        panelRef={panelRef}
+        ctaRef={ctaRef}
+      />
+      <IntroSection profile={resumeData.profile} education={resumeData.education} />
       <ContactSection
         profile={resumeData.profile}
-        education={resumeData.education}
       />
-      <ContactFooter profile={resumeData.profile} />
+      <SkillsSection profile={resumeData.profile} skills={resumeData.skills} />
     </div>
   );
 }

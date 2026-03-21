@@ -1,12 +1,12 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useRef } from "react";
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
 import type { Group } from "three";
 import * as THREE from "three";
-import type { JobEntry } from "../types/resume";
-import { BackgroundParticles } from "./BackgroundParticles";
-import { OrbitSystem } from "./OrbitSystem";
-import { ReactCore } from "./ReactCore";
+import type { JobEntry } from "../../types/resume";
+import { BackgroundParticles } from "../BackgroundParticles";
+import { OrbitSystem } from "../OrbitSystem";
+import { ReactCore } from "../ReactCore";
+import "./style.css";
 
 interface HeroSceneProps {
   jobs: JobEntry[];
