@@ -1,0 +1,31 @@
+.job-node-tooltip {
+  border: 1px solid rgba(255, 178, 94, 0.16);
+  background: rgba(9, 11, 18, 0.72);
+  color: rgba(255, 238, 220, 0.92);
+  padding: 0.36rem 0.56rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(4px) scale(0.96);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    border-color 180ms ease;
+  white-space: nowrap;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+.job-node-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  border-color: rgba(255, 178, 94, 0.36);
+}
+
+@media (max-width: 640px) {
+  .job-node-tooltip {
+    font-size: 0.62rem;
+  }
+}

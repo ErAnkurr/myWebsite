@@ -1,5 +1,6 @@
-import type { JobEntry } from "../types/resume";
-import { OrbitRing } from "./OrbitRing";
+import type { JobEntry } from "../../types/resume";
+import { OrbitRing } from "../OrbitRing";
+import "./style.css";
 
 interface OrbitSystemProps {
   jobs: JobEntry[];

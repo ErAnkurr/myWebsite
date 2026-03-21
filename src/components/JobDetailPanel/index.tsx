@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { RefObject } from "react";
-import type { JobEntry } from "../types/resume";
+import type { JobEntry } from "../../types/resume";
+import "./style.css";
 
 interface JobDetailPanelProps {
   job: JobEntry | null;

@@ -1,0 +1,23 @@
+.education-summary {
+  display: grid;
+  gap: 0.32rem;
+  margin-top: 0.1rem;
+}
+
+.education-summary__item {
+  display: grid;
+  gap: 0.08rem;
+  margin: 0;
+}
+
+.education-summary__degree {
+  color: rgba(222, 235, 255, 0.82);
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.education-summary__meta {
+  color: rgba(169, 194, 243, 0.62);
+  font-size: 0.68rem;
+  line-height: 1.35;
+}

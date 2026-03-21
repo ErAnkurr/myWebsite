@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import type { Group, Mesh } from "three";
 import * as THREE from "three";
+import "./style.css";
 
 interface ReactCoreProps {
   motionFactor: number;

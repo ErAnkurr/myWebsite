@@ -3,8 +3,8 @@ import type { ResumeData } from "../types/resume";
 export const resumeData: ResumeData = {
   profile: {
     name: "Ankur Sharma",
-    title: "Senior Frontend Engineer",
-    tagline: "Scalable Web Architecture",
+    title: "Frontend Engineer",
+    tagline: "Scalable Web Architecture | React & TypeScript Expert | Performance & Accessibility Advocate",
     summary:
       "Senior Frontend Engineer with 12+ years of software development experience, including 6+ years building and scaling React and TypeScript applications in enterprise environments.",
     location: "Vancouver, BC, Canada",

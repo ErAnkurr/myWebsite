@@ -3,6 +3,8 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import type { Group } from "three";
 import * as THREE from "three";
+import "./style.css";
+
 interface JobNodeProps {
   label: string;
   nodeColor: string;

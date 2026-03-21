@@ -2,6 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import type { Points } from "three";
 import * as THREE from "three";
+import "./style.css";
 
 interface BackgroundParticlesProps {
   motionFactor: number;
