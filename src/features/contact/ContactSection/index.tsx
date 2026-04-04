@@ -1,4 +1,4 @@
-import type { Profile } from "../../types/resume";
+import type { Profile } from "../../shared/types/resume";
 import "./style.css";
 
 interface ContactSectionProps {

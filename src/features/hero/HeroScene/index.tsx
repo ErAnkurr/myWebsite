@@ -2,7 +2,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
 import type { Group } from "three";
 import * as THREE from "three";
-import type { JobEntry } from "../../types/resume";
+import type { JobEntry } from "../../shared/types/resume";
 import { BackgroundParticles } from "../BackgroundParticles";
 import { OrbitSystem } from "../OrbitSystem";
 import { ReactCore } from "../ReactCore";

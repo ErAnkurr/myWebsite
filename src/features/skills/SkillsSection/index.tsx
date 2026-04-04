@@ -1,4 +1,4 @@
-import type { Profile, SkillsData } from "../../types/resume";
+import type { Profile, SkillsData } from "../../shared/types/resume";
 import "./style.css";
 
 interface SkillsSectionProps {
