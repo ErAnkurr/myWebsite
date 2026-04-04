@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import type { RefObject } from "react";
 import type { JobEntry, Profile } from "../../shared/types/resume";
 import { HeroScene } from "../HeroScene";
-import { JobDetailPanel } from "../../experience/JobDetailPanel";
 import "./style.css";
 
 interface HeroSectionProps {
@@ -26,6 +26,16 @@ export function HeroSection({
   onRevealPanel,
   ctaRef,
 }: HeroSectionProps) {
+  const handleCtaClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    track("explore_experience_click", {
+      location: "hero",
+      label: "Explore Experience",
+    });
+
+    onRevealPanel();
+  };
+
   return (
     <section className="hero-layout">
       <div className="hero-copy">
@@ -55,7 +65,7 @@ export function HeroSection({
       <button
         ref={ctaRef}
         className="hero-cta"
-        onClick={onRevealPanel}
+        onClick={handleCtaClick}
         aria-expanded={Boolean(selectedJob)}
       >
         {profile.cta}
