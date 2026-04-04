@@ -1,10 +1,10 @@
 {
-  "name": "react-login-basic",
+  "name": "my-website",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview"
   },

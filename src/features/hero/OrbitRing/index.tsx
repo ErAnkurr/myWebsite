@@ -3,8 +3,8 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useState } from "react";
 import type { BufferAttribute, BufferGeometry, Group, LineBasicMaterial } from "three";
 import * as THREE from "three";
-import type { JobEntry } from "../../types/resume";
-import { JobNode } from "../JobNode";
+import type { JobEntry } from "../../shared/types/resume";
+import { JobNode } from "../../experience/JobNode";
 import "./style.css";
 
 interface OrbitVisualConfig {
