@@ -1,4 +1,4 @@
-import type { EducationEntry, Profile } from "../../types/resume";
+import type { EducationEntry, Profile } from "../../shared/types/resume";
 import { EducationSummary } from "../EducationSummary";
 import "./style.css";
 

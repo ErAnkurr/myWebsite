@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import type { RefObject } from "react";
-import type { JobEntry, Profile } from "../../types/resume";
+import type { JobEntry, Profile } from "../../shared/types/resume";
 import { HeroScene } from "../HeroScene";
-import { JobDetailPanel } from "../JobDetailPanel";
+import { JobDetailPanel } from "../../experience/JobDetailPanel";
 import "./style.css";
 
 interface HeroSectionProps {
@@ -12,9 +12,7 @@ interface HeroSectionProps {
   selectedJob: JobEntry | null;
   motionFactor: number;
   onSelect: (jobId: string) => void;
-  onClose: () => void;
   onRevealPanel: () => void;
-  panelRef: RefObject<HTMLElement>;
   ctaRef: RefObject<HTMLButtonElement>;
 }
 
@@ -25,9 +23,7 @@ export function HeroSection({
   selectedJob,
   motionFactor,
   onSelect,
-  onClose,
   onRevealPanel,
-  panelRef,
   ctaRef,
 }: HeroSectionProps) {
   return (
@@ -56,22 +52,14 @@ export function HeroSection({
         motionFactor={motionFactor}
       />
 
-      <motion.button
+      <button
         ref={ctaRef}
         className="hero-cta"
         onClick={onRevealPanel}
-        whileHover={{ scale: 1.02, y: -1 }}
-        whileTap={{ scale: 0.99 }}
         aria-expanded={Boolean(selectedJob)}
       >
         {profile.cta}
-      </motion.button>
-
-      <JobDetailPanel
-        job={selectedJob}
-        panelRef={panelRef}
-        onClose={onClose}
-      />
+      </button>
     </section>
   );
 }

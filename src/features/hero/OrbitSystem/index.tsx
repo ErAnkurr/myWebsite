@@ -1,4 +1,4 @@
-import type { JobEntry } from "../../types/resume";
+import type { JobEntry } from "../../shared/types/resume";
 import { OrbitRing } from "../OrbitRing";
 import "./style.css";
 

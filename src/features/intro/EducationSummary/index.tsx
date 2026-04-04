@@ -1,4 +1,4 @@
-import type { EducationEntry } from "../../types/resume";
+import type { EducationEntry } from "../../shared/types/resume";
 import "./style.css";
 
 interface EducationSummaryProps {
