@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from "framer-motion";
 import type { JobEntry } from "../../shared/types/resume";
 import { Modal } from "../../shared/ui/Modal";
 import "./style.css";
@@ -23,26 +22,23 @@ export function ExperienceCarousel({
     return null;
   }
 
-  const goPrev = () => {
+  const goPrev = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const prevIndex = (index - 1 + jobs.length) % jobs.length;
     onSelect(jobs[prevIndex].id);
   };
 
-  const goNext = () => {
+  const goNext = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const nextIndex = (index + 1) % jobs.length;
     onSelect(jobs[nextIndex].id);
   };
 
   return (
-    <AnimatePresence>
       <Modal isOpen onClose={onClose} ariaLabel="Experience carousel">
-        <motion.div
+        <div
           key={current.id}
           className="experience-modal"
-          initial={{ opacity: 0, y: 24, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 16, scale: 0.98 }}
-          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         >
           <button
             className="experience-close"
@@ -54,12 +50,13 @@ export function ExperienceCarousel({
           </button>
 
           <div className="experience-header">
+            <h2 className="experience-title">{current.role}</h2>
+            <p className="experience-company">{current.company}</p>
             <div className="experience-meta">
               <p className="experience-eyebrow">{current.location}</p>
               <p className="experience-dates">{formatDateRange(current.start, current.end)}</p>
             </div>
-            <h2 className="experience-title">{current.role}</h2>
-            <p className="experience-company">{current.company}</p>
+            
             <p className="experience-summary">{current.summary}</p>
           </div>
 
@@ -91,9 +88,8 @@ export function ExperienceCarousel({
               ›
             </button>
           </div>
-        </motion.div>
+        </div>
       </Modal>
-    </AnimatePresence>
   );
 }
 
