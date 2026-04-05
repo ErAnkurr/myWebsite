@@ -24,12 +24,14 @@ export function Modal({ isOpen, onClose, children, ariaLabel }: ModalProps) {
         }
       }}
     >
+      {/* eslint-disable-next-line */}
       <div
         className="modal-shell"
         role="dialog"
         aria-modal="true"
         aria-label={ariaLabel}
-        onPointerDown={(event) => event.stopPropagation()}
+        // Prevent any clicks inside the dialog from bubbling up to the overlay and closing the modal
+        onClick={(event) => event.stopPropagation()}
       >
         {children}
       </div>
