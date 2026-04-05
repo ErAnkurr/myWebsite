@@ -1,9 +1,9 @@
-import { Line, Sparkles } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
-import type { Group, Mesh } from "three";
-import * as THREE from "three";
-import "./style.css";
+import { Line, Sparkles } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { useMemo, useRef } from 'react';
+import type { Group, Mesh } from 'three';
+import * as THREE from 'three';
+import './style.css';
 
 interface ReactCoreProps {
   motionFactor: number;
@@ -13,29 +13,23 @@ export function ReactCore({ motionFactor }: ReactCoreProps) {
   const groupRef = useRef<Group>(null);
   const pulseRef = useRef<Mesh>(null);
   const orbitalPaths = useMemo(
-    () =>
-      [
-        {
-          rotation: [Math.PI / 2.75, 0.02, 0] as [number, number, number],
-          points: createEllipsePoints(3.65, 0.44),
-        },
-        {
-          rotation: [Math.PI / 2.75, 0.18, Math.PI / 3] as [
-            number,
-            number,
-            number,
-          ],
-          points: createEllipsePoints(3.65, 0.44),
-        },
-        {
-          rotation: [Math.PI / 2.75, -0.14, -Math.PI / 3] as [
-            number,
-            number,
-            number,
-          ],
-          points: createEllipsePoints(3.65, 0.44),
-        },
-      ],
+    () => [
+      {
+        id: 'orbit-a',
+        rotation: [Math.PI / 2.75, 0.02, 0] as [number, number, number],
+        points: createEllipsePoints(3.65, 0.44),
+      },
+      {
+        id: 'orbit-b',
+        rotation: [Math.PI / 2.75, 0.18, Math.PI / 3] as [number, number, number],
+        points: createEllipsePoints(3.65, 0.44),
+      },
+      {
+        id: 'orbit-c',
+        rotation: [Math.PI / 2.75, -0.14, -Math.PI / 3] as [number, number, number],
+        points: createEllipsePoints(3.65, 0.44),
+      },
+    ],
     [],
   );
 
@@ -87,8 +81,8 @@ export function ReactCore({ motionFactor }: ReactCoreProps) {
         />
       </mesh>
 
-      {orbitalPaths.map((orbitalPath, index) => (
-        <group key={index} rotation={orbitalPath.rotation}>
+      {orbitalPaths.map((orbitalPath) => (
+        <group key={orbitalPath.id} rotation={orbitalPath.rotation}>
           <Line
             points={orbitalPath.points}
             color="#e6f8ff"
@@ -121,10 +115,6 @@ export function ReactCore({ motionFactor }: ReactCoreProps) {
 function createEllipsePoints(radius: number, yScale: number) {
   return Array.from({ length: 180 }, (_, index) => {
     const theta = (index / 179) * Math.PI * 2;
-    return new THREE.Vector3(
-      Math.cos(theta) * radius,
-      Math.sin(theta) * radius * yScale,
-      0,
-    );
+    return new THREE.Vector3(Math.cos(theta) * radius, Math.sin(theta) * radius * yScale, 0);
   });
 }

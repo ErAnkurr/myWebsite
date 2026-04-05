@@ -1,19 +1,13 @@
-import {
-  startTransition,
-  useDeferredValue,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { useReducedMotion } from "framer-motion";
-import { HeroSection } from "../features/hero/HeroSection";
-import { IntroSection } from "../features/intro/IntroSection";
-import { ContactSection } from "../features/contact/ContactSection";
-import { SkillsSection } from "../features/skills/SkillsSection";
-import { resumeData } from "../features/shared/data/resumeData";
-import { ExperienceCarousel } from "../features/experience/ExperienceCarousel";
-import "./style.css";
+import { useReducedMotion } from 'framer-motion';
+import { startTransition, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+
+import { ContactSection } from '../features/contact/ContactSection';
+import { ExperienceCarousel } from '../features/experience/ExperienceCarousel';
+import { HeroSection } from '../features/hero/HeroSection';
+import { IntroSection } from '../features/intro/IntroSection';
+import { resumeData } from '../features/shared/data/resumeData';
+import { SkillsSection } from '../features/skills/SkillsSection';
+import './style.css';
 
 export default function App() {
   const prefersReducedMotion = useReducedMotion();
@@ -32,15 +26,15 @@ export default function App() {
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setSelectedId(null);
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedId]);
 
@@ -73,9 +67,7 @@ export default function App() {
         ctaRef={ctaRef}
       />
       <IntroSection profile={resumeData.profile} education={resumeData.education} />
-      <ContactSection
-        profile={resumeData.profile}
-      />
+      <ContactSection profile={resumeData.profile} />
       <SkillsSection profile={resumeData.profile} skills={resumeData.skills} />
       <ExperienceCarousel
         jobs={resumeData.jobs}

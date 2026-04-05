@@ -1,7 +1,8 @@
-import { AnimatePresence, motion } from "framer-motion";
-import type { RefObject } from "react";
-import type { JobEntry } from "../../shared/types/resume";
-import "./style.css";
+import { AnimatePresence, motion } from 'framer-motion';
+import type { RefObject } from 'react';
+
+import type { JobEntry } from '../../shared/types/resume';
+import './style.css';
 
 interface JobDetailPanelProps {
   job: JobEntry | null;
@@ -9,11 +10,7 @@ interface JobDetailPanelProps {
   onClose: () => void;
 }
 
-export function JobDetailPanel({
-  job,
-  panelRef,
-  onClose,
-}: JobDetailPanelProps) {
+export function JobDetailPanel({ job, panelRef, onClose }: JobDetailPanelProps) {
   return (
     <AnimatePresence>
       {job ? (
@@ -31,9 +28,9 @@ export function JobDetailPanel({
             <motion.section
               key={job.id}
               className="job-panel"
-              initial={{ opacity: 0, x: 26, filter: "blur(8px)" }}
-              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, x: 14, filter: "blur(8px)" }}
+              initial={{ opacity: 0, x: 26, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, x: 14, filter: 'blur(8px)' }}
               transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
             >
               <button
@@ -49,9 +46,7 @@ export function JobDetailPanel({
               <h2>{job.company}</h2>
               <p className="job-panel__role">{job.role}</p>
 
-              <div className="job-panel__date-chip">
-                {formatDateRange(job.start, job.end)}
-              </div>
+              <div className="job-panel__date-chip">{formatDateRange(job.start, job.end)}</div>
 
               <p className="job-panel__summary">{job.summary}</p>
 
@@ -78,15 +73,15 @@ export function JobDetailPanel({
 }
 
 function formatDateRange(start: string, end: string) {
-  return `${formatMonth(start)} - ${end === "Present" ? "Present" : formatMonth(end)}`;
+  return `${formatMonth(start)} - ${end === 'Present' ? 'Present' : formatMonth(end)}`;
 }
 
 function formatMonth(value: string) {
-  const [year, month] = value.split("-");
+  const [year, month] = value.split('-');
   const date = new Date(Number(year), Number(month) - 1, 1);
 
-  return date.toLocaleString("en-US", {
-    month: "short",
-    year: "numeric",
+  return date.toLocaleString('en-US', {
+    month: 'short',
+    year: 'numeric',
   });
 }

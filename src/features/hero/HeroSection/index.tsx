@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
-import { track } from "@vercel/analytics";
-import type { RefObject } from "react";
-import type { JobEntry, Profile } from "../../shared/types/resume";
-import { HeroScene } from "../HeroScene";
-import "./style.css";
+import { track } from '@vercel/analytics';
+import { motion } from 'framer-motion';
+import type { RefObject } from 'react';
+
+import type { JobEntry, Profile } from '../../shared/types/resume';
+import { HeroScene } from '../HeroScene';
+import './style.css';
 
 interface HeroSectionProps {
   profile: Profile;
@@ -12,8 +13,9 @@ interface HeroSectionProps {
   selectedJob: JobEntry | null;
   motionFactor: number;
   onSelect: (jobId: string) => void;
+  onClose: () => void;
   onRevealPanel: () => void;
-  ctaRef: RefObject<HTMLButtonElement>;
+  ctaRef: RefObject<HTMLButtonElement | null>;
 }
 
 export function HeroSection({
@@ -28,9 +30,9 @@ export function HeroSection({
 }: HeroSectionProps) {
   const handleCtaClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    track("explore_experience_click", {
-      location: "hero",
-      label: "Explore Experience",
+    track('explore_experience_click', {
+      location: 'hero',
+      label: 'Explore Experience',
     });
 
     onRevealPanel();

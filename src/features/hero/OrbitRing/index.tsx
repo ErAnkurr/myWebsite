@@ -1,11 +1,12 @@
-import { Line } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
-import type { BufferAttribute, BufferGeometry, Group, LineBasicMaterial } from "three";
-import * as THREE from "three";
-import type { JobEntry } from "../../shared/types/resume";
-import { JobNode } from "../../experience/JobNode";
-import "./style.css";
+import { Line } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { useMemo, useRef, useState } from 'react';
+import type { BufferAttribute, BufferGeometry, Group, LineBasicMaterial } from 'three';
+import * as THREE from 'three';
+
+import { JobNode } from '../../experience/JobNode';
+import type { JobEntry } from '../../shared/types/resume';
+import './style.css';
 
 interface OrbitVisualConfig {
   radius: number;
@@ -26,13 +27,7 @@ interface OrbitRingProps {
 
 const ELLIPSE_HEIGHT = 0.6;
 
-export function OrbitRing({
-  job,
-  visual,
-  selected,
-  motionFactor,
-  onSelect,
-}: OrbitRingProps) {
+export function OrbitRing({ job, visual, selected, motionFactor, onSelect }: OrbitRingProps) {
   const groupRef = useRef<Group>(null);
   const orbitRef = useRef<Group>(null);
   const connectorGeometryRef = useRef<BufferGeometry>(null);
@@ -57,12 +52,10 @@ export function OrbitRing({
     }
 
     const slowdown = hovered ? 0.012 : selected ? 0.28 : 1;
-    angleRef.current +=
-      delta * visual.speed * slowdown * Math.max(motionFactor, 0.12);
+    angleRef.current += delta * visual.speed * slowdown * Math.max(motionFactor, 0.12);
 
     const drift = Math.sin(state.clock.elapsedTime * 0.22 + visual.offset * 2.4) * 0.18;
-    const depthDrift =
-      Math.cos(state.clock.elapsedTime * 0.18 + visual.offset * 4.2) * 0.08;
+    const depthDrift = Math.cos(state.clock.elapsedTime * 0.18 + visual.offset * 4.2) * 0.08;
     const localX = Math.cos(angleRef.current) * visual.radius;
     const localY = Math.sin(angleRef.current) * visual.radius * ELLIPSE_HEIGHT + drift;
     const targetZ = (hovered ? 0.52 : selected ? 0.22 : 0) + depthDrift;
@@ -71,15 +64,9 @@ export function OrbitRing({
 
     orbitRef.current.position.x = localX;
     orbitRef.current.position.y = localY;
-    orbitRef.current.position.z = THREE.MathUtils.lerp(
-      orbitRef.current.position.z,
-      targetZ,
-      0.1,
-    );
+    orbitRef.current.position.z = THREE.MathUtils.lerp(orbitRef.current.position.z, targetZ, 0.1);
 
-    const attribute = connectorGeometryRef.current.getAttribute(
-      "position",
-    ) as BufferAttribute;
+    const attribute = connectorGeometryRef.current.getAttribute('position') as BufferAttribute;
     attribute.setXYZ(0, 0, 0, 0);
     attribute.setXYZ(1, localX, localY, 0);
     attribute.needsUpdate = true;
@@ -93,7 +80,7 @@ export function OrbitRing({
     <group ref={groupRef} rotation={visual.tilt}>
       <Line
         points={ringPoints}
-        color={selected ? "#84dcff" : "#5878ab"}
+        color={selected ? '#84dcff' : '#5878ab'}
         transparent
         opacity={selected ? 0.22 : 0.08}
         lineWidth={selected ? 0.7 : 0.48}
@@ -101,14 +88,11 @@ export function OrbitRing({
 
       <line>
         <bufferGeometry ref={connectorGeometryRef}>
-          <bufferAttribute
-            attach="attributes-position"
-            args={[new Float32Array(6), 3]}
-          />
+          <bufferAttribute attach="attributes-position" args={[new Float32Array(6), 3]} />
         </bufferGeometry>
         <lineBasicMaterial
           ref={connectorMaterialRef}
-          color={hovered || selected ? "#d6f2ff" : "#6f93c5"}
+          color={hovered || selected ? '#d6f2ff' : '#6f93c5'}
           transparent
           opacity={selected ? 0.46 : 0.14}
         />
