@@ -1,16 +1,14 @@
-import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
-import type { Points } from "three";
-import * as THREE from "three";
-import "./style.css";
+import { useFrame } from '@react-three/fiber';
+import { useMemo, useRef } from 'react';
+import type { Points } from 'three';
+import * as THREE from 'three';
+import './style.css';
 
 interface BackgroundParticlesProps {
   motionFactor: number;
 }
 
-export function BackgroundParticles({
-  motionFactor,
-}: BackgroundParticlesProps) {
+export function BackgroundParticles({ motionFactor }: BackgroundParticlesProps) {
   const pointsRef = useRef<Points>(null);
 
   const positions = useMemo(() => {

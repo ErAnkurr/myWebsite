@@ -23,11 +23,17 @@
 }
 
 .job-panel::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(103, 194, 255, 0.12), transparent 30%, transparent 68%, rgba(255, 156, 66, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(103, 194, 255, 0.12),
+    transparent 30%,
+    transparent 68%,
+    rgba(255, 156, 66, 0.1)
+  );
   pointer-events: none;
 }
 
@@ -84,7 +90,7 @@
 }
 
 .job-panel__bullets li::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0.62rem;

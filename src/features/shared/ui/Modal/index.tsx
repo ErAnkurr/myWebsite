@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import "./style.css";
+import type { ReactNode } from 'react';
+import './style.css';
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,14 +14,22 @@ export function Modal({ isOpen, onClose, children, ariaLabel }: ModalProps) {
   return (
     <div
       className="modal-overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-label={ariaLabel}
+      role="button"
+      tabIndex={0}
+      aria-label={ariaLabel ?? 'Close modal overlay'}
       onClick={onClose}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+          onClose();
+        }
+      }}
     >
       <div
         className="modal-shell"
-        onClick={(event) => event.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={ariaLabel}
+        onPointerDown={(event) => event.stopPropagation()}
       >
         {children}
       </div>

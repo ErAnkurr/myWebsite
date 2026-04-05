@@ -1,5 +1,5 @@
-import type { Profile, SkillsData } from "../../shared/types/resume";
-import "./style.css";
+import type { Profile, SkillsData } from '../../shared/types/resume';
+import './style.css';
 
 interface SkillsSectionProps {
   profile: Profile;
@@ -10,11 +10,11 @@ const skillGroups: Array<{
   key: keyof SkillsData;
   label: string;
 }> = [
-  { key: "frontend", label: "Frontend" },
-  { key: "stateManagement", label: "State Management" },
-  { key: "apisAndServices", label: "APIs & Services" },
-  { key: "engineering", label: "Engineering" },
-  { key: "tools", label: "Tools" },
+  { key: 'frontend', label: 'Frontend' },
+  { key: 'stateManagement', label: 'State Management' },
+  { key: 'apisAndServices', label: 'APIs & Services' },
+  { key: 'engineering', label: 'Engineering' },
+  { key: 'tools', label: 'Tools' },
 ];
 
 export function SkillsSection({ profile, skills }: SkillsSectionProps) {

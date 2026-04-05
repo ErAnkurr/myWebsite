@@ -16,7 +16,7 @@
 
 .hero-copy h1 {
   margin: 0 0 0.55rem;
-  font-family: "Barlow Condensed", sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: clamp(3.3rem, 8.4vw, 6.1rem);
   font-weight: 600;
   letter-spacing: 0.14em;
