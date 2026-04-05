@@ -13,8 +13,9 @@ interface HeroSectionProps {
   selectedJob: JobEntry | null;
   motionFactor: number;
   onSelect: (jobId: string) => void;
+  onClose: () => void;
   onRevealPanel: () => void;
-  ctaRef: RefObject<HTMLButtonElement>;
+  ctaRef: RefObject<HTMLButtonElement | null>;
 }
 
 export function HeroSection({
