@@ -1,9 +1,10 @@
-import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import type { Group } from "three";
-import * as THREE from "three";
-import "./style.css";
+import { Html } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import type { ThreeEvent } from '@react-three/fiber';
+import { useRef } from 'react';
+import type { Group } from 'three';
+import * as THREE from 'three';
+import './style.css';
 
 interface JobNodeProps {
   label: string;
@@ -26,7 +27,7 @@ export function JobNode({
 }: JobNodeProps) {
   const groupRef = useRef<Group>(null);
 
-  useFrame((_, delta) => {
+  useFrame((_, _delta) => {
     if (!groupRef.current) {
       return;
     }
@@ -36,25 +37,21 @@ export function JobNode({
     groupRef.current.scale.setScalar(nextScale);
 
     const targetZ = hovered ? 0.4 : selected ? 0.16 : 0;
-    groupRef.current.position.z = THREE.MathUtils.lerp(
-      groupRef.current.position.z,
-      targetZ,
-      0.08,
-    );
+    groupRef.current.position.z = THREE.MathUtils.lerp(groupRef.current.position.z, targetZ, 0.08);
   });
 
   return (
     <group
       ref={groupRef}
-      onPointerOver={(event) => {
+      onPointerOver={(event: ThreeEvent<PointerEvent>) => {
         event.stopPropagation();
         onHover(true);
       }}
-      onPointerOut={(event) => {
+      onPointerOut={(event: ThreeEvent<PointerEvent>) => {
         event.stopPropagation();
         onHover(false);
       }}
-      onClick={(event) => {
+      onClick={(event: ThreeEvent<MouseEvent>) => {
         event.stopPropagation();
         onSelect();
       }}
@@ -101,12 +98,7 @@ export function JobNode({
         zIndexRange={[20, 0]}
       >
         <div
-          className={[
-            "job-node-tooltip",
-            hovered ? "is-visible" : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
+          className={['job-node-tooltip', hovered ? 'is-visible' : ''].filter(Boolean).join(' ')}
         >
           {label}
         </div>

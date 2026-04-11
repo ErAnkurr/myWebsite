@@ -1,6 +1,6 @@
-import type { EducationEntry, Profile } from "../../shared/types/resume";
-import { EducationSummary } from "../EducationSummary";
-import "./style.css";
+import type { EducationEntry, Profile } from '../../shared/types/resume';
+import { EducationSummary } from '../EducationSummary';
+import './style.css';
 
 interface IntroSectionProps {
   profile: Profile;

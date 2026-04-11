@@ -1,12 +1,13 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useRef } from "react";
-import type { Group } from "three";
-import * as THREE from "three";
-import type { JobEntry } from "../../shared/types/resume";
-import { BackgroundParticles } from "../BackgroundParticles";
-import { OrbitSystem } from "../OrbitSystem";
-import { ReactCore } from "../ReactCore";
-import "./style.css";
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Suspense, useRef } from 'react';
+import type { Group } from 'three';
+import * as THREE from 'three';
+
+import type { JobEntry } from '../../shared/types/resume';
+import { BackgroundParticles } from '../BackgroundParticles';
+import { OrbitSystem } from '../OrbitSystem';
+import { ReactCore } from '../ReactCore';
+import './style.css';
 
 interface HeroSceneProps {
   jobs: JobEntry[];
@@ -15,21 +16,16 @@ interface HeroSceneProps {
   motionFactor: number;
 }
 
-export function HeroScene({
-  jobs,
-  selectedId,
-  onSelect,
-  motionFactor,
-}: HeroSceneProps) {
+export function HeroScene({ jobs, selectedId, onSelect, motionFactor }: HeroSceneProps) {
   return (
     <div className="hero-scene" aria-hidden="true">
       <Canvas
         dpr={[1.2, 2]}
         camera={{ position: [0, 0.2, 15.8], fov: 33 }}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       >
-        <color attach="background" args={["#03060d"]} />
-        <fog attach="fog" args={["#03060d", 18, 44]} />
+        <color attach="background" args={['#03060d']} />
+        <fog attach="fog" args={['#03060d', 18, 44]} />
 
         <ambientLight intensity={0.48} />
         <directionalLight position={[6, 8, 4]} intensity={0.78} color="#dff4ff" />
@@ -84,25 +80,13 @@ function SceneRig({ children, motionFactor }: SceneRigProps) {
     const baseX = wideLayout ? -1.15 : 0;
     const baseY = wideLayout ? -0.42 : -0.12;
     const targetPosition = new THREE.Vector3(
-      THREE.MathUtils.clamp(
-        baseX + pointer.x * pointerFactor,
-        -clampRangeX,
-        clampRangeX,
-      ),
-      THREE.MathUtils.clamp(
-        baseY + pointer.y * 0.12,
-        -clampRangeY,
-        clampRangeY,
-      ),
+      THREE.MathUtils.clamp(baseX + pointer.x * pointerFactor, -clampRangeX, clampRangeX),
+      THREE.MathUtils.clamp(baseY + pointer.y * 0.12, -clampRangeY, clampRangeY),
       0,
     );
 
     rigRef.current.position.lerp(targetPosition, 0.035);
-    const nextScale = THREE.MathUtils.lerp(
-      rigRef.current.scale.x,
-      Math.max(fitScale, 0.78),
-      0.06,
-    );
+    const nextScale = THREE.MathUtils.lerp(rigRef.current.scale.x, Math.max(fitScale, 0.78), 0.06);
     rigRef.current.scale.setScalar(nextScale);
     rigRef.current.rotation.x = THREE.MathUtils.lerp(
       rigRef.current.rotation.x,
@@ -114,8 +98,7 @@ function SceneRig({ children, motionFactor }: SceneRigProps) {
       pointer.x * 0.06 * motionFactor,
       0.03,
     );
-    rigRef.current.position.y +=
-      Math.sin(state.clock.elapsedTime * 0.14) * 0.0008 * motionFactor;
+    rigRef.current.position.y += Math.sin(state.clock.elapsedTime * 0.14) * 0.0008 * motionFactor;
   });
 
   return <group ref={rigRef}>{children}</group>;

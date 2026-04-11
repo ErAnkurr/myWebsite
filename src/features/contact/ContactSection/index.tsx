@@ -1,5 +1,5 @@
-import type { Profile } from "../../shared/types/resume";
-import "./style.css";
+import type { Profile } from '../../shared/types/resume';
+import './style.css';
 
 interface ContactSectionProps {
   profile: Profile;
