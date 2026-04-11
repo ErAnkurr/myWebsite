@@ -32,9 +32,9 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'prettier',
+    'plugin:prettier/recommended',
   ],
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y', 'import'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y', 'import', 'prettier'],
   ignorePatterns: ['dist', 'build', 'node_modules'],
   rules: {
     // Core safety
@@ -58,13 +58,11 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/consistent-type-imports': [
       'warn',
       { prefer: 'type-imports', disallowTypeAnnotations: false },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
-
     '@typescript-eslint/no-floating-promises': 'off',
 
     // React
